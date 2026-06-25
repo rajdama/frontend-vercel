@@ -58,6 +58,7 @@ export default function LifeSteinQuoteEngine() {
   // ── results state ──
   const [loading, setLoading] = useState(false);
   const [quotes, setQuotes] = useState([]);
+  const [error, setError] = useState(null); // error message when the live API fails
   const [summary, setSummary] = useState(null); // snapshot of inputs at quote time
   const [sort, setSort] = useState('price');
 
@@ -92,14 +93,22 @@ export default function LifeSteinQuoteEngine() {
 
     setLoading(true);
     setQuotes([]);
+    setError(null);
 
-    const result = await fetchQuotes(snapshot);
-
-    setSummary(snapshot);
-    setQuotes(result);
-    setSort('price');
-    setLoading(false);
-    if (window.innerWidth <= 768) setShowSticky(true);
+    try {
+      const result = await fetchQuotes(snapshot);
+      setSummary(snapshot);
+      setQuotes(result);
+      setSort('price');
+      if (window.innerWidth <= 768) setShowSticky(true);
+    } catch (e) {
+      console.error('[runQuotes] failed:', e);
+      setSummary(null);
+      setQuotes([]);
+      setError(e?.message || 'Something went wrong while fetching quotes.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // scroll to results once they render
@@ -352,6 +361,18 @@ export default function LifeSteinQuoteEngine() {
           <div className="spinner"></div>
           <div className="spinner-text">Searching top carriers for your best rates…</div>
         </div>
+
+        {/* ERROR */}
+        {error && !loading && (
+          <div className="quote-error" role="alert">
+            <div className="quote-error-icon">⚠️</div>
+            <div className="quote-error-body">
+              <h4>We couldn't get live quotes right now</h4>
+              <p className="quote-error-detail">{error}</p>
+              <button className="quote-error-retry" onClick={runQuotes}>Try again</button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* RESULTS */}

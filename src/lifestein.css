@@ -671,6 +671,41 @@ footer {
 @keyframes spin { to { transform: rotate(360deg); } }
 .spinner-text { font-size: 14px; color: var(--gray-500); }
 
+/* ── QUOTE ERROR ── */
+.quote-error {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.quote-error-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.quote-error-body h4 { font-size: 15px; font-weight: 600; color: #991b1b; margin-bottom: 4px; }
+.quote-error-detail {
+  font-size: 13px;
+  color: #b91c1c;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.quote-error-retry {
+  margin-top: 12px;
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  transition: background .2s;
+}
+.quote-error-retry:hover { background: #b91c1c; }
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }

@@ -169,11 +169,24 @@ function mapCompulifeResult(row, input, idx) {
   };
 }
 
+// Pull a human-readable message out of whatever the backend/CompuLife returned.
+function extractErrorMessage(text, status) {
+  try {
+    const j = JSON.parse(text);
+    // backend wraps CompuLife's body in `details`; CompuLife uses `message`
+    const detail = typeof j.details === 'string' ? j.details : '';
+    let inner = '';
+    try { inner = JSON.parse(detail)?.message || ''; } catch { inner = detail; }
+    return inner || j.message || j.error || `Request failed (HTTP ${status}).`;
+  } catch {
+    return text || `Request failed (HTTP ${status}).`;
+  }
+}
+
 /**
- * Fetch quotes from the real backend (/api/quote → CompuLife).
- * Logs the request and response to the browser console, and falls back to
- * locally-computed dummy quotes if the API fails or returns nothing — so the
- * UI keeps working while the API is being validated on the hosting platform.
+ * Fetch live quotes from the backend (/api/quote → CompuLife).
+ * Logs request/response to the console and THROWS on any failure so the UI can
+ * surface the real error instead of showing dummy data.
  *
  * @param {{ name, dob, sex, state, coverage, term, nicotine, cigarFreq, heightFt, heightIn, weight }} input
  * @returns {Promise<Array>} list of quote objects in the UI shape
@@ -182,41 +195,33 @@ export async function fetchQuotes(input) {
   const payload = buildCompulifePayload(input);
   console.log('[fetchQuotes] → POST /api/quote', { COMPULIFE: payload });
 
-  try {
-    const res = await fetch('/api/quote', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ COMPULIFE: payload }),
-    });
+  const res = await fetch('/api/quote', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ COMPULIFE: payload }),
+  });
 
-    const text = await res.text();
-    console.log('[fetchQuotes] ← status', res.status, 'raw body:', text);
+  const text = await res.text();
+  console.log('[fetchQuotes] ← status', res.status, 'raw body:', text);
 
-    if (!res.ok) {
-      console.warn('[fetchQuotes] API returned an error — using dummy data fallback.');
-      return computeDummyQuotes(input);
-    }
-
-    let json;
-    try {
-      json = JSON.parse(text);
-    } catch {
-      console.warn('[fetchQuotes] Response was not JSON — using dummy data fallback.');
-      return computeDummyQuotes(input);
-    }
-    console.log('[fetchQuotes] parsed response:', json);
-
-    const rows = json?.Compulife_ComparisonResults?.Compulife_Results || [];
-    console.log('[fetchQuotes] result rows found:', rows.length);
-
-    if (!rows.length) {
-      console.warn('[fetchQuotes] No quote rows in response — using dummy data fallback.');
-      return computeDummyQuotes(input);
-    }
-
-    return rows.map((row, i) => mapCompulifeResult(row, input, i));
-  } catch (e) {
-    console.error('[fetchQuotes] Network/exception — using dummy data fallback:', e);
-    return computeDummyQuotes(input);
+  if (!res.ok) {
+    throw new Error(extractErrorMessage(text, res.status));
   }
+
+  let json;
+  try {
+    json = JSON.parse(text);
+  } catch {
+    throw new Error('The server returned an unexpected (non-JSON) response.');
+  }
+  console.log('[fetchQuotes] parsed response:', json);
+
+  const rows = json?.Compulife_ComparisonResults?.Compulife_Results || [];
+  console.log('[fetchQuotes] result rows found:', rows.length);
+
+  if (!rows.length) {
+    throw new Error('No quotes were returned for this profile. Please adjust your details and try again.');
+  }
+
+  return rows.map((row, i) => mapCompulifeResult(row, input, i));
 }
