@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeStein.com — Compare Life Insurance Rates in Minutes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #407C51;
+  --green-dark: #2f5c3a;
+  --green-light: #e8f5ec;
+  --green-mid: #5a9c6a;
+  --gold: #C9A84C;
+  --navy: #0B1628;
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,.10), 0 4px 8px rgba(0,0,0,.06);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-800);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+.nav {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--gray-900);
+  text-decoration: none;
+  letter-spacing: -.3px;
+}
+.logo span { color: var(--green); }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--green); }
+.nav-cta {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: background .2s;
+}
+.nav-cta:hover { background: var(--green-dark); }
+.nav-mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #f0f7f3 0%, #ffffff 55%, #f8fafc 100%);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 52px 24px 40px;
+}
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 48px;
+  align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-light);
+  border: 1px solid #c6e8d0;
+  border-radius: 30px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-bottom: 16px;
+}
+.hero-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--gray-900);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -.5px;
+}
+.hero h1 em { color: var(--green); font-style: normal; }
+.hero p {
+  font-size: 15px;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #c6e8d0;
+  border-radius: 30px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #166534;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+.matt-card {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.matt-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-mid));
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px;
+  color: #fff;
+  border: 3px solid var(--green-light);
+}
+.matt-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+.matt-card p { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+.matt-npn { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+.verified-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--green-light);
+  border: 1px solid #c6e8d0;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--green-dark);
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* ── CALC SECTION ── */
+.calc-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 24px;
+}
+.calc-card {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  box-shadow: var(--shadow-md);
+}
+.calc-card h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+.calc-card .sub-text {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 28px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.col-2 { grid-column: span 2; }
+.form-group.col-3 { grid-column: span 3; }
+label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+input, select {
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: 'Outfit', sans-serif;
+  color: var(--gray-800);
+  background: var(--gray-50);
+  transition: border-color .2s, box-shadow .2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(64,124,81,.12);
+  background: #fff;
+}
+input::placeholder { color: var(--gray-400); }
+.select-wrap { position: relative; }
+.select-wrap::after {
+  content: '▾';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+  pointer-events: none;
+  font-size: 12px;
+}
+.height-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.btn-primary {
+  width: 100%;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 15px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  letter-spacing: .3px;
+  transition: background .2s, transform .1s, box-shadow .2s;
+  box-shadow: 0 4px 14px rgba(64,124,81,.25);
+}
+.btn-primary:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(64,124,81,.3);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-primary.loading { opacity: .75; cursor: not-allowed; }
+
+.privacy-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--gray-400);
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* ── RESULTS ── */
+.results-section {
+  max-width: 1100px;
+  margin: 0 auto 48px;
+  padding: 0 24px;
+  display: none;
+}
+.results-section.visible { display: block; }
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.results-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gray-900);
+}
+.results-header .count-badge {
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #c6e8d0;
+}
+
+.quote-summary-bar {
+  background: var(--green-light);
+  border: 1px solid #c6e8d0;
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.quote-summary-bar .summary-text { font-size: 13px; color: var(--green-dark); font-weight: 500; }
+.edit-link { font-size: 12px; color: var(--green); font-weight: 600; cursor: pointer; white-space: nowrap; text-decoration: underline; }
+
+.sort-row { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.sort-chip {
+  padding: 6px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-500);
+  cursor: pointer;
+  background: #fff;
+  transition: .15s;
+  font-family: 'Outfit', sans-serif;
+}
+.sort-chip:hover { border-color: var(--green); color: var(--green); }
+.sort-chip.active { background: var(--green); color: #fff; border-color: var(--green); }
+
+/* QUOTE CARDS */
+.quotes-list { display: flex; flex-direction: column; gap: 10px; }
+.quote-card {
+  background: #fff;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+  position: relative;
+  overflow: hidden;
+}
+.quote-card:hover {
+  border-color: var(--green);
+  box-shadow: 0 4px 16px rgba(64,124,81,.12);
+  transform: translateY(-1px);
+}
+.quote-card.featured { border-color: var(--green); box-shadow: 0 4px 16px rgba(64,124,81,.12); }
+.featured-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--green);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 0 0 var(--radius-sm) 0;
+  letter-spacing: .4px;
+}
+
+.carrier-logo-box {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green-dark);
+  text-align: center;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.carrier-info h4 { font-size: 15px; font-weight: 600; color: var(--gray-900); margin-bottom: 3px; }
+.carrier-info .product-name { font-size: 12px; color: var(--gray-500); margin-bottom: 6px; }
+.carrier-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.meta-chip {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid;
+}
+.chip-green { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+.chip-blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.chip-gold { background: #fefce8; color: #92400e; border-color: #fde68a; }
+.chip-gray { background: var(--gray-100); color: var(--gray-600); border-color: var(--gray-300); }
+
+.quote-price-col { text-align: right; }
+.price-amount { font-size: 28px; font-weight: 700; color: var(--gray-900); line-height: 1; }
+.price-period { font-size: 14px; font-weight: 400; color: var(--gray-400); }
+.price-annual { font-size: 12px; color: var(--gray-400); margin: 3px 0 10px; }
+.request-btn {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.request-btn:hover { background: var(--green-dark); }
+
+/* ── OWNER SECTION ── */
+.owner-section {
+  background: #fff;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 40px 24px;
+  margin: 12px 0;
+}
+.owner-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.owner-avatar-lg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-mid));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: #fff;
+  flex-shrink: 0;
+  border: 3px solid var(--green-light);
+}
+.owner-text h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+.owner-text p { font-size: 14px; color: var(--gray-600); line-height: 1.65; margin-bottom: 10px; max-width: 620px; }
+.owner-meta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.owner-meta-item { font-size: 12px; font-weight: 600; color: var(--green); }
+.owner-meta-item.npn { color: var(--gray-500); font-weight: 400; }
+
+/* ── TRUST GRID ── */
+.trust-section { padding: 40px 24px; background: var(--gray-50); }
+.trust-inner { max-width: 1100px; margin: 0 auto; }
+.trust-inner h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gray-900);
+  margin-bottom: 20px;
+  text-align: center;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.trust-item {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.trust-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.trust-text h4 { font-size: 13px; font-weight: 600; color: var(--gray-800); margin-bottom: 3px; }
+.trust-text p { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  color: #fff;
+  padding: 32px 24px;
+  text-align: center;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-logo { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 8px; }
+.footer-logo span { color: var(--green-mid); }
+.footer-text { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: modalIn .2s ease-out;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.modal-header h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gray-900);
+}
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.modal-close:hover { background: var(--gray-200); }
+
+.modal-highlight {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+.mh-item label {
+  font-size: 10px;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  display: block;
+  margin-bottom: 3px;
+}
+.mh-item span { font-size: 14px; font-weight: 600; color: var(--gray-900); }
+.mh-item span.price-highlight { color: var(--green); font-size: 20px; }
+
+.prefill-note {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #0369a1;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.modal-form { display: flex; flex-direction: column; gap: 14px; }
+.modal-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal-form .btn-primary {
+  margin-top: 6px;
+  font-size: 15px;
+}
+.modal-footer-note {
+  font-size: 11px;
+  color: var(--gray-400);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* ── LOADING SPINNER ── */
+.spinner-wrap { text-align: center; padding: 48px 0; display: none; }
+.spinner-wrap.visible { display: block; }
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-200);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner-text { font-size: 14px; color: var(--gray-500); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-mobile-menu { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; font-size: 22px; color: var(--gray-600); }
+  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .matt-card { display: grid; grid-template-columns: 72px 1fr; text-align: left; gap: 14px; align-items: center; }
+  .matt-avatar { width: 72px; height: 72px; margin: 0; font-size: 22px; }
+  .hero h1 { font-size: 26px; }
+  .calc-card { padding: 22px 18px; }
+  .form-grid { grid-template-columns: 1fr 1fr; }
+  .form-group.col-2, .form-group.col-3 { grid-column: span 2; }
+  .quote-card { grid-template-columns: 46px 1fr; }
+  .quote-price-col { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--gray-100); }
+  .price-amount { font-size: 24px; }
+  .price-annual { margin: 0 0 0 6px; display: inline; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .owner-inner { grid-template-columns: 60px 1fr; gap: 16px; }
+  .owner-avatar-lg { width: 60px; height: 60px; font-size: 20px; }
+  .modal-box { padding: 22px 18px; }
+  .modal-highlight { grid-template-columns: 1fr 1fr; }
+  .modal-form-row { grid-template-columns: 1fr; }
+  .modal-form-row .form-group { grid-column: unset; }
+
+  /* Sticky CTA on mobile */
+  .sticky-mobile-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid var(--gray-200);
+    padding: 12px 20px;
+    z-index: 90;
+    box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+    display: none;
+  }
+  .sticky-mobile-cta.show { display: block; }
+}
+@media (max-width: 480px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.col-2, .form-group.col-3 { grid-column: span 1; }
+  .height-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── CIGAR FREQUENCY BOX ── */
+.cigar-freq-box {
+  display: none;
+  background: #fffbeb;
+  border: 1.5px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+  animation: slideDown .2s ease-out;
+}
+.cigar-freq-box.visible { display: block; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.cigar-freq-box .freq-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 8px;
+}
+.cigar-freq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cigar-freq-option {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  background: #fff;
+  border: 1.5px solid #fde68a;
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.cigar-freq-option:hover { border-color: #f59e0b; }
+.cigar-freq-option.selected { border-color: var(--green); background: var(--green-light); }
+.cigar-freq-option input[type="radio"] { display: none; }
+.cigar-check-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  background: #fff;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .15s, background .15s;
+}
+.cigar-check-circle::after {
+  content: '';
+  display: none;
+  width: 6px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translateY(-1px);
+}
+.cigar-freq-option.selected .cigar-check-circle {
+  background: var(--green);
+  border-color: var(--green);
+}
+.cigar-freq-option.selected .cigar-check-circle::after { display: block; }
+.cigar-freq-option-title { font-size: 13px; font-weight: 600; color: var(--gray-800); }
+.cigar-freq-option.selected .cigar-freq-option-title { color: var(--green-dark); }
+.nonsmoker-pill {
+  display: inline-block;
+  background: var(--green-light);
+  border: 1px solid #c6e8d0;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green-dark);
+  white-space: nowrap;
+}
+
+/* ── SUCCESS STATE ── */
+.success-modal {
+  text-align: center;
+  padding: 20px 0;
+}
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--green-light);
+  border: 2px solid #c6e8d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 20px;
+}
+.success-modal h3 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--gray-900); margin-bottom: 10px; }
+.success-modal p { font-size: 14px; color: var(--gray-600); line-height: 1.6; max-width: 380px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#">Life<span>Stein</span>.com</a>
+    <ul class="nav-links">
+      <li><a href="#">Life Insurance</a></li>
+      <li><a href="#">Nicotine Users</a></li>
+      <li><a href="#">How It Works</a></li>
+      <li><a href="#">About Matt</a></li>
+    </ul>
+    <button class="nav-cta" onclick="scrollToCalc()">Get Free Quotes</button>
+    <button class="nav-mobile-menu" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Compare Life Insurance Rates in Minutes</div>
+      <h1>Protect Your Family With the <em>Right Coverage</em> at the Right Price</h1>
+      <p>Get instant quotes from dozens of top-rated carriers. No call centers. No pressure. Work directly with Matt Mims, owner of LifeStein.com — a licensed independent broker in all 50 states.</p>
+      <div class="trust-badges">
+        <div class="badge"><div class="badge-dot"></div>Licensed in All 50 States</div>
+        <div class="badge"><div class="badge-dot"></div>Independent Broker</div>
+        <div class="badge"><div class="badge-dot"></div>Private &amp; Secure</div>
+        <div class="badge"><div class="badge-dot"></div>No Call Center</div>
+      </div>
+    </div>
+    <div class="matt-card">
+      <div class="matt-avatar">MM</div>
+      <h3>Matt Mims</h3>
+      <p>Owner &amp; Licensed Broker<br>LifeStein.com</p>
+      <div class="matt-npn">NPN #18882528</div>
+      <div class="verified-pill">✓ Independent Broker</div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section" id="calculator">
+  <div class="calc-card">
+    <h2>Get Your Personalized Quote</h2>
+    <p class="sub-text">Takes about 60 seconds · No spam · No sales pressure · Quotes go directly to Matt</p>
+
+    <div class="form-grid">
+      <div class="form-group col-2">
+        <label for="f-name">Full Name</label>
+        <input type="text" id="f-name" placeholder="Jane Smith">
+      </div>
+      <div class="form-group">
+        <label for="f-dob">Date of Birth</label>
+        <input type="date" id="f-dob">
+      </div>
+      <div class="form-group">
+        <label>Height</label>
+        <div class="height-row">
+          <div class="select-wrap">
+            <select id="f-height-ft">
+              <option value="">Ft</option>
+              <option>4'</option><option selected>5'</option><option>6'</option><option>7'</option>
+            </select>
+          </div>
+          <div class="select-wrap">
+            <select id="f-height-in">
+              <option value="">In</option>
+              <option>0"</option><option>1"</option><option>2"</option><option>3"</option>
+              <option>4"</option><option>5"</option><option>6"</option><option>7"</option>
+              <option selected>8"</option><option>9"</option><option>10"</option><option>11"</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="f-weight">Weight (lbs)</label>
+        <input type="number" id="f-weight" placeholder="165" min="80" max="500">
+      </div>
+      <div class="form-group">
+        <label for="f-sex">Biological Sex</label>
+        <div class="select-wrap">
+          <select id="f-sex">
+            <option value="">Select…</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="f-state">State</label>
+        <div class="select-wrap">
+          <select id="f-state">
+            <option value="">Select state…</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+            <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+            <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+            <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+            <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+            <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+            <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+            <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+            <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+            <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+            <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+            <option>Wisconsin</option><option>Wyoming</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="f-coverage">Coverage Amount</label>
+        <div class="select-wrap">
+          <select id="f-coverage">
+            <option value="100000">$100,000</option>
+            <option value="250000">$250,000</option>
+            <option value="500000" selected>$500,000</option>
+            <option value="750000">$750,000</option>
+            <option value="1000000">$1,000,000</option>
+            <option value="1500000">$1,500,000</option>
+            <option value="2000000">$2,000,000</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="f-term">Term Length</label>
+        <div class="select-wrap">
+          <select id="f-term">
+            <option value="10">10 Years</option>
+            <option value="15">15 Years</option>
+            <option value="20" selected>20 Years</option>
+            <option value="25">25 Years</option>
+            <option value="30">30 Years</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="f-nicotine">Nicotine / Tobacco Use</label>
+        <div class="select-wrap">
+          <select id="f-nicotine" onchange="handleNicotineChange(this.value)">
+            <option value="none">No Nicotine Use</option>
+            <option value="cigarettes">Cigarettes</option>
+            <option value="vape">Vape / E-Cigarettes</option>
+            <option value="cigars">Cigars</option>
+            <option value="pouches">Zyn / Nicotine Pouches</option>
+            <option value="dip">Dip / Chewing Tobacco</option>
+            <option value="chew">Chew / Snuff</option>
+            <option value="gum">Nicotine Gum</option>
+            <option value="patch">Nicotine Patch</option>
+            <option value="other">Other Nicotine Replacement</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- CIGAR FREQUENCY BOX — outside grid -->
+    <div class="cigar-freq-box" id="cigar-freq-box">
+      <div class="freq-label">🚬 How many cigars per year?</div>
+      <div class="cigar-freq-options">
+        <div class="cigar-freq-option" id="freq-opt-low" onclick="selectCigarFreq('low')">
+          <div class="cigar-check-circle" id="check-low"></div>
+          <span class="cigar-freq-option-title">Fewer than 24 per year</span>
+          <span class="nonsmoker-pill">✓ Non-Smoker Rates</span>
+        </div>
+        <div class="cigar-freq-option" id="freq-opt-mid" onclick="selectCigarFreq('mid')">
+          <div class="cigar-check-circle" id="check-mid"></div>
+          <span class="cigar-freq-option-title">25–52 per year</span>
+          <span class="nonsmoker-pill">✓ Non-Smoker Rates</span>
+        </div>
+        <div class="cigar-freq-option" id="freq-opt-high" onclick="selectCigarFreq('high')">
+          <div class="cigar-check-circle" id="check-high"></div>
+          <span class="cigar-freq-option-title">Unlimited</span>
+          <span class="nonsmoker-pill">✓ Non-Smoker Rates</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary" id="get-quotes-btn" onclick="runQuotes()">
+      See My Rates →
+    </button>
+    <div class="privacy-note">
+      🔒 Private &amp; secure · No call center · Goes directly to Matt Mims
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="spinner-wrap" id="spinner">
+    <div class="spinner"></div>
+    <div class="spinner-text">Searching top carriers for your best rates…</div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section" id="results-section">
+  <div class="quote-summary-bar">
+    <div class="summary-text" id="summary-text">Loading…</div>
+    <span class="edit-link" onclick="editQuote()">Edit Quote ✎</span>
+  </div>
+  <div class="results-header">
+    <div>
+      <h2>Quotes Found</h2>
+    </div>
+    <div class="count-badge" id="count-badge">— results</div>
+  </div>
+  <div class="sort-row">
+    <button class="sort-chip active" onclick="sortBy('price', this)">Lowest Price</button>
+    <button class="sort-chip" onclick="sortBy('rating', this)">Best Rated</button>
+    <button class="sort-chip" onclick="sortBy('aplus', this)">A+ Carriers Only</button>
+  </div>
+  <div class="quotes-list" id="quotes-list"></div>
+</section>
+
+<!-- OWNER SECTION -->
+<div class="owner-section">
+  <div class="owner-inner">
+    <div class="owner-avatar-lg">MM</div>
+    <div class="owner-text">
+      <h2>Work Directly With the Owner</h2>
+      <p>You won't be transferred to a call center or routed to a random agent. Every quote request goes directly to Matt Mims, the owner of LifeStein.com. Matt will personally review your information and find the best coverage fit across 188 carriers.</p>
+      <div class="owner-meta-row">
+        <div class="owner-meta-item">Matt Mims · Owner, LifeStein.com</div>
+        <div class="owner-meta-item npn">NPN #18882528</div>
+        <div class="owner-meta-item">📞 (888) 612-7935</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST SECTION -->
+<section class="trust-section">
+  <div class="trust-inner">
+    <h2>Why Clients Choose LifeStein</h2>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">🗺️</div>
+        <div class="trust-text">
+          <h4>Licensed in All 50 States</h4>
+          <p>Matt is licensed nationwide, so no matter where you live, you're covered.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🏢</div>
+        <div class="trust-text">
+          <h4>Independent Broker</h4>
+          <p>Not tied to one company. LifeStein shops 188+ carriers to find your best rate.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-text">
+          <h4>Private Quote Requests</h4>
+          <p>Your information goes to Matt — not a database of agents competing for your business.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🚭</div>
+        <div class="trust-text">
+          <h4>Nicotine &amp; Cannabis Specialists</h4>
+          <p>Experts at securing non-smoker rates for vape, Zyn, dip, and cannabis users.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">✋</div>
+        <div class="trust-text">
+          <h4>Zero Obligation</h4>
+          <p>Requesting a quote is completely free. No commitment required — ever.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div class="trust-text">
+          <h4>Fast Response Times</h4>
+          <p>Matt personally responds quickly. Most clients hear back same day or next morning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Life<span>Stein</span>.com</div>
+    <p class="footer-text">
+      LifeStein.com is a licensed independent life insurance brokerage. Matt Mims, NPN #18882528, is licensed in all 50 states.
+      Rates shown are estimates based on standard underwriting guidelines and are subject to change. Final rates are determined by the carrier.
+      <br><br>
+      Media mentions: NerdWallet · CNBC · MSN &nbsp;|&nbsp; (888) 612-7935 &nbsp;|&nbsp; info@lifestein.com
+    </p>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="sticky-mobile-cta" id="sticky-cta">
+  <button class="btn-primary" onclick="scrollToCalc()">Get Free Quotes →</button>
+</div>
+
+<!-- REQUEST MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ── CARRIER DATA ──
+const carriers = [
+  { id:'banner',    name:'Banner Life Insurance',   abbr:'BAN\nNER', product:'OPTerm',           rating:'A+', nicotineFriendly:true,  instant:false, base:{M:{10:16,15:21,20:27,25:34,30:40},F:{10:13,15:17,20:22,25:28,30:33}} },
+  { id:'symetra',   name:'Symetra Life Insurance',  abbr:'SYM\nETR', product:'SwiftTerm',         rating:'A',  nicotineFriendly:true,  instant:true,  base:{M:{10:18,15:23,20:31,25:39,30:46},F:{10:15,15:19,20:25,25:31,30:37}} },
+  { id:'protective',name:'Protective Life',          abbr:'PRO\nTEC', product:'Classic Choice Term',rating:'A+', nicotineFriendly:false, instant:false, base:{M:{10:19,15:24,20:33,25:41,30:48},F:{10:16,15:20,20:26,25:33,30:39}} },
+  { id:'pacific',   name:'Pacific Life',             abbr:'PAC\nLIF', product:'PL Promise Term',   rating:'A+', nicotineFriendly:false, instant:false, base:{M:{10:20,15:26,20:36,25:44,30:52},F:{10:17,15:21,20:28,25:35,30:42}} },
+  { id:'corebridge',name:'Corebridge Financial',     abbr:'CORE\nBRG', product:'AG Select-a-Term', rating:'A',  nicotineFriendly:true,  instant:false, base:{M:{10:21,15:27,20:37,25:45,30:53},F:{10:17,15:22,20:29,25:37,30:44}} },
+  { id:'cincinnati',name:'Cincinnati Life',           abbr:'CIN\nLIF', product:'LifeHorizons Term', rating:'A+', nicotineFriendly:true,  instant:false, base:{M:{10:22,15:28,20:38,25:47,30:55},F:{10:18,15:23,20:31,25:39,30:46}} },
+  { id:'mutual',    name:'Mutual of Omaha',           abbr:'MUT\nOMA', product:'Term Life Answers', rating:'A+', nicotineFriendly:false, instant:true,  base:{M:{10:23,15:30,20:41,25:50,30:58},F:{10:19,15:25,20:33,25:41,30:49}} },
+  { id:'nationwide',name:'Nationwide Life',           abbr:'NAT\nWID', product:'YourLife Term',     rating:'A+', nicotineFriendly:false, instant:false, base:{M:{10:24,15:31,20:43,25:53,30:62},F:{10:20,15:26,20:35,25:43,30:51}} },
+  { id:'penn',      name:'Penn Mutual Life',          abbr:'PENN\nMUT', product:'Guaranteed Choice', rating:'A+', nicotineFriendly:false, instant:false, base:{M:{10:25,15:33,20:45,25:55,30:65},F:{10:21,15:27,20:36,25:45,30:54}} },
+  { id:'legal',     name:'Legal & General',           abbr:'L&G\nUSA', product:'Banner Term',       rating:'A+', nicotineFriendly:true,  instant:true,  base:{M:{10:17,15:22,20:30,25:38,30:44},F:{10:14,15:18,20:24,25:30,30:36}} },
+];
+
+let currentQuotes = [];
+let currentSort = 'price';
+let selectedCarrierForModal = null;
+
+function getAge(dob) {
+  if (!dob) return 38;
+  const d = new Date(dob), now = new Date();
+  let age = now.getFullYear() - d.getFullYear();
+  if (now.getMonth() < d.getMonth() || (now.getMonth() === d.getMonth() && now.getDate() < d.getDate())) age--;
+  return age;
+}
+
+function getAgeFactor(age) {
+  if (age < 30) return 0.65;
+  if (age < 35) return 0.80;
+  if (age < 40) return 1.00;
+  if (age < 45) return 1.30;
+  if (age < 50) return 1.70;
+  if (age < 55) return 2.20;
+  if (age < 60) return 2.90;
+  return 3.80;
+}
+
+function getCoverageFactor(coverage) {
+  return coverage / 500000;
+}
+
+let selectedCigarFreq = 'low';
+
+function getCigarFreq() {
+  return selectedCigarFreq;
+}
+
+function handleNicotineChange(val) {
+  const box = document.getElementById('cigar-freq-box');
+  if (val === 'cigars') {
+    box.classList.add('visible');
+    selectCigarFreq('low');
+  } else {
+    box.classList.remove('visible');
+  }
+}
+
+function selectCigarFreq(val) {
+  selectedCigarFreq = val;
+  document.querySelectorAll('.cigar-freq-option').forEach(o => o.classList.remove('selected'));
+  document.getElementById('freq-opt-' + val).classList.add('selected');
+}
+
+function getNicotineFactor(type, carrier, cigarFreq) {
+  if (type === 'none') return 1.0;
+  if (type === 'cigarettes') return carrier.nicotineFriendly ? 2.4 : 2.8;
+  if (type === 'vape') return carrier.nicotineFriendly ? 1.3 : 1.6;
+  if (['pouches','gum','patch'].includes(type)) return carrier.nicotineFriendly ? 1.0 : 1.25;
+  if (['dip','chew'].includes(type)) return carrier.nicotineFriendly ? 1.1 : 1.4;
+  if (type === 'cigars') {
+    // All three tiers qualify for non-smoker rates at the right carrier
+    if (cigarFreq === 'low') return carrier.nicotineFriendly ? 1.0 : 1.10;
+    if (cigarFreq === 'mid') return carrier.nicotineFriendly ? 1.0 : 1.20;
+    if (cigarFreq === 'high') return carrier.nicotineFriendly ? 1.05 : 1.30;
+  }
+  return 1.15;
+}
+
+function getHealthClass(nicotine, carrier, cigarFreq) {
+  if (nicotine === 'none') return 'Preferred Plus';
+  if (['pouches','gum','patch'].includes(nicotine) && carrier.nicotineFriendly) return 'Preferred (Non-Tobacco)';
+  if (nicotine === 'cigarettes') return 'Standard Tobacco';
+  if (nicotine === 'cigars') {
+    if (carrier.nicotineFriendly) {
+      if (cigarFreq === 'low') return 'Preferred Plus (Non-Tobacco)';
+      if (cigarFreq === 'mid') return 'Preferred (Non-Tobacco)';
+      return 'Standard Plus (Non-Tobacco)';
+    }
+    if (cigarFreq === 'low') return 'Preferred (Non-Tobacco)';
+    return 'Standard Plus';
+  }
+  if (carrier.nicotineFriendly) return 'Preferred (Non-Tobacco)';
+  return 'Standard Plus';
+}
+
+function calcPremium(carrier, sex, term, coverage, age, nicotine, cigarFreq) {
+  const base = carrier.base[sex]?.[term] || carrier.base['M'][20];
+  const price = Math.round(base * getAgeFactor(age) * getCoverageFactor(coverage) * getNicotineFactor(nicotine, carrier, cigarFreq));
+  return Math.max(price, 14);
+}
+
+function formatCurrency(n) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+}
+
+function runQuotes() {
+  const name = document.getElementById('f-name').value.trim() || 'Applicant';
+  const dob = document.getElementById('f-dob').value;
+  const sex = document.getElementById('f-sex').value || 'M';
+  const state = document.getElementById('f-state').value || 'Colorado';
+  const coverage = parseInt(document.getElementById('f-coverage').value) || 500000;
+  const term = parseInt(document.getElementById('f-term').value) || 20;
+  const nicotine = document.getElementById('f-nicotine').value || 'none';
+  const cigarFreq = getCigarFreq();
+  const age = getAge(dob);
+
+  // Show spinner, hide results
+  document.getElementById('spinner').classList.add('visible');
+  document.getElementById('results-section').classList.remove('visible');
+  document.getElementById('get-quotes-btn').classList.add('loading');
+  document.getElementById('get-quotes-btn').textContent = 'Searching carriers…';
+
+  setTimeout(() => {
+    document.getElementById('spinner').classList.remove('visible');
+    document.getElementById('get-quotes-btn').classList.remove('loading');
+    document.getElementById('get-quotes-btn').textContent = 'See My Rates →';
+
+    currentQuotes = carriers.map(c => ({
+      ...c,
+      premium: calcPremium(c, sex, term, coverage, age, nicotine, cigarFreq),
+      healthClass: getHealthClass(nicotine, c, cigarFreq),
+      coverageAmt: coverage,
+      termLen: term,
+      age, sex, state, name, dob, nicotine, cigarFreq
+    }));
+
+    currentSort = 'price';
+    document.querySelectorAll('.sort-chip').forEach(c => c.classList.remove('active'));
+    document.querySelector('.sort-chip').classList.add('active');
+
+    const cigarFreqLabel = { low:'< 24/yr', mid:'25–52/yr', high:'Unlimited' }[cigarFreq] || '';
+    const nicotineLabel = {
+      none:'No Nicotine Use', cigarettes:'Cigarettes', vape:'Vaping', pouches:'Zyn / Pouches',
+      dip:'Dip', chew:'Chew / Snuff', cigars:'Cigars' + (cigarFreq ? ` (${cigarFreqLabel})` : ''),
+      gum:'Nicotine Gum', patch:'Nicotine Patch', other:'Other NRT'
+    }[nicotine] || nicotine;
+
+    document.getElementById('summary-text').textContent =
+      `${name} · Age ${age} · ${sex === 'M' ? 'Male' : 'Female'} · ${formatCurrency(coverage)} · ${term}-Year Term · ${state} · ${nicotineLabel}`;
+    document.getElementById('count-badge').textContent = `${currentQuotes.length} results`;
+
+    renderQuotes();
+    document.getElementById('results-section').classList.add('visible');
+    document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showMobileSticky();
+  }, 1600);
+}
+
+function sortBy(type, btn) {
+  currentSort = type;
+  document.querySelectorAll('.sort-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  renderQuotes();
+}
+
+function renderQuotes() {
+  let sorted = [...currentQuotes];
+  if (currentSort === 'price') sorted.sort((a,b) => a.premium - b.premium);
+  else if (currentSort === 'rating') sorted.sort((a,b) => {
+    const order = {'A+':0,'A':1,'A-':2};
+    return (order[a.rating]||3) - (order[b.rating]||3);
+  });
+  else if (currentSort === 'aplus') sorted = sorted.filter(q => q.rating === 'A+').sort((a,b) => a.premium - b.premium);
+
+  const lowest = sorted[0]?.premium;
+  const list = document.getElementById('quotes-list');
+  list.innerHTML = '';
+
+  sorted.forEach((q, i) => {
+    const isFeatured = i === 1 && currentSort === 'price';
+    const isLowest = q.premium === lowest && i === 0;
+    const nicotineIsNonSmoke = q.nicotine !== 'none' && q.nicotineFriendly;
+
+    const card = document.createElement('div');
+    card.className = 'quote-card' + (isFeatured ? ' featured' : '');
+    card.onclick = () => openModal(q);
+
+    const chips = [];
+    if (isLowest) chips.push('<span class="meta-chip chip-green">Lowest Price</span>');
+    if (isFeatured && !isLowest) chips.push('<span class="meta-chip chip-gold">Most Selected</span>');
+    if (nicotineIsNonSmoke) chips.push('<span class="meta-chip chip-green">Non-Cigarette Nicotine Friendly</span>');
+    if (q.instant) chips.push('<span class="meta-chip chip-blue">Instant Decision</span>');
+    chips.push(`<span class="meta-chip chip-gray">AM Best: ${q.rating}</span>`);
+
+    card.innerHTML = `
+      ${isFeatured ? '<div class="featured-ribbon">MOST SELECTED</div>' : ''}
+      <div class="carrier-logo-box">${q.abbr}</div>
+      <div class="carrier-info">
+        <h4>${q.name}</h4>
+        <div class="product-name">${q.product} ${q.termLen}-Year · ${formatCurrency(q.coverageAmt)}</div>
+        <div class="carrier-meta">${chips.join('')}</div>
+      </div>
+      <div class="quote-price-col">
+        <div class="price-amount">${q.premium}<span class="price-period">/mo</span></div>
+        <div class="price-annual">${formatCurrency(q.premium * 12)}/yr</div>
+        <button class="request-btn" onclick="event.stopPropagation();openModal(q_${i})">Request Quote</button>
+      </div>
+    `;
+    // bind button properly
+    card.querySelector('.request-btn').onclick = (e) => { e.stopPropagation(); openModal(q); };
+    list.appendChild(card);
+  });
+
+  document.getElementById('count-badge').textContent = `${sorted.length} results`;
+}
+
+function editQuote() {
+  document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+}
+
+function openModal(q) {
+  selectedCarrierForModal = q;
+  const mc = document.getElementById('modal-content');
+
+  const nicotineLabel = {
+    none:'No Nicotine Use', cigarettes:'Cigarettes', vape:'Vaping', pouches:'Zyn / Pouches',
+    dip:'Dip', chew:'Chew / Snuff', cigars:'Cigars', gum:'Nicotine Gum', patch:'Nicotine Patch', other:'Other NRT'
+  }[q.nicotine] || q.nicotine;
+
+  if (q.nicotine === 'cigars' && q.cigarFreq) {
+    const freqMap = { low:'< 24 cigars/yr', mid:'25–52 cigars/yr', high:'Unlimited cigars/yr' };
+    nicotineLabel += ' · ' + (freqMap[q.cigarFreq] || '');
+  }
+
+  const dobDisplay = q.dob ? new Date(q.dob + 'T00:00:00').toLocaleDateString('en-US', { month:'2-digit', day:'2-digit', year:'numeric' }) : '—';
+
+  mc.innerHTML = `
+    <div class="modal-header">
+      <h3>Request This Coverage</h3>
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    </div>
+    <div class="modal-highlight">
+      <div class="mh-item"><label>Carrier</label><span>${q.name}</span></div>
+      <div class="mh-item"><label>Product</label><span>${q.product} ${q.termLen}-Yr</span></div>
+      <div class="mh-item"><label>Est. Monthly</label><span class="price-highlight">$${q.premium}/mo</span></div>
+      <div class="mh-item"><label>Coverage</label><span>${formatCurrency(q.coverageAmt)}</span></div>
+      <div class="mh-item"><label>Health Class</label><span>${q.healthClass}</span></div>
+      <div class="mh-item"><label>AM Best</label><span>${q.rating}</span></div>
+    </div>
+    <div class="prefill-note">
+      ✓ Pre-filled from your quote: <strong>${q.name}</strong> · DOB ${dobDisplay} · Age ${q.age} · ${q.sex === 'M' ? 'Male' : 'Female'} · ${q.state} · ${nicotineLabel}
+    </div>
+    <div class="modal-form">
+      <div class="form-group">
+        <label for="m-email">Email Address <span style="color:#e24b4a">*</span></label>
+        <input type="email" id="m-email" placeholder="jane@example.com">
+      </div>
+      <div class="form-group">
+        <label for="m-phone">Phone Number <span style="color:#94a3b8;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+        <input type="tel" id="m-phone" placeholder="(555) 000-0000">
+      </div>
+      <button class="btn-primary" onclick="submitRequest()">Request Coverage →</button>
+    </div>
+    <div class="modal-footer-note">
+      🔒 Your information goes directly to Matt Mims. No call centers. No third-party sharing. Zero obligation.
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function submitRequest() {
+  const email = document.getElementById('m-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('m-email').focus();
+    document.getElementById('m-email').style.borderColor = '#e24b4a';
+    return;
+  }
+  const q = selectedCarrierForModal;
+  const mc = document.getElementById('modal-content');
+  mc.innerHTML = `
+    <div class="success-modal">
+      <div class="success-icon">✓</div>
+      <h3>Quote Request Sent!</h3>
+      <p>Your request for <strong>${q.name} ${q.product}</strong> at <strong>$${q.premium}/mo</strong> has been sent directly to Matt Mims. He'll be in touch soon — no call centers, no strangers.</p>
+      <br>
+      <p style="font-size:13px;color:#94a3b8">Questions? Call <a href="tel:8886127935" style="color:var(--green)">(888) 612-7935</a> or text <a href="tel:6012187854" style="color:var(--green)">(601) 218-7854</a></p>
+      <br>
+      <button class="btn-primary" style="max-width:220px;margin:0 auto" onclick="closeModalBtn()">Done</button>
+    </div>
+  `;
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function scrollToCalc() {
+  document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+}
+
+function showMobileSticky() {
+  if (window.innerWidth <= 768) {
+    document.getElementById('sticky-cta').classList.add('show');
+  }
+}
+
+// Escape key closes modal
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+</script>
+</body>
+</html>
